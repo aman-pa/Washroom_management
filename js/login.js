@@ -117,7 +117,11 @@ document.addEventListener('DOMContentLoaded', () => {
     setLoadingState(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/login', {
+      const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+        ? 'http://localhost:5000/api' 
+        : `${window.location.origin}/api`;
+
+      const response = await fetch(`${API_BASE}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
