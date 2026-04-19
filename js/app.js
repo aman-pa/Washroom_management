@@ -3,7 +3,10 @@
  * Replaces previous localStorage manager with robust fetch calls to Node.js backend
  */
 
-const API_BASE = 'http://localhost:5000/api';
+// Auto-detect API base: works on both localhost and deployed server
+const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:5000/api'
+  : `${window.location.origin}/api`;
 
 // Utility to get auth token
 function getAuthToken() {
