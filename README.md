@@ -27,8 +27,7 @@
 - [Default Login Credentials](#-default-login-credentials)
 - [Project Structure](#-project-structure)
 - [API Endpoints](#-api-endpoints)
-- [Screenshots](#-screenshots)
-- [Author](#-author)
+
 
 ---
 
