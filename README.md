@@ -255,6 +255,7 @@ Washroom_management/
 - 📧 amanpandey10a3@gmail.com
 - 🎓 Lovely Professional University, Jalandhar, Punjab, India
 - **Ankit Gupta*
+- 📧 ankitgupta893392@gmail.com
 - **Babru Ranjan Mohanty*
 
 ---
