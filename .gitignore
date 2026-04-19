@@ -1,0 +1,8 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+
+# Backend auto-reset tracker
+backend/.last_reset_date

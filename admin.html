@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel | SanitizeQ</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+  
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <i class="fa-solid fa-pump-medical"></i> Sanitize<span>Q</span> <span style="font-size: 1rem; color:var(--dark-text); font-weight: normal; margin-left: 10px;">| Admin</span>
+      </a>
+      <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+      <nav class="nav-links">
+        <a href="index.html">Live Site</a>
+        <a href="admin.html" class="active">Panel</a>
+      </nav>
+      <div class="nav-actions" style="display:flex; align-items:center;">
+        <span style="margin-right: 15px; font-weight: 500;"><i class="fa-solid fa-user-shield"></i> System Admin</span>
+        <a href="login.html" class="btn btn-outline" style="padding: 6px 15px;">Log Out</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      
+      <!-- Top Summary Cards -->
+      <div class="grid-3 mb-4" style="margin-bottom: 30px;">
+        <div class="card stat-card" style="border-left: 4px solid var(--primary-color);">
+          <div class="info">
+            <h3 id="stat-total">0</h3>
+            <p>Total Washrooms</p>
+          </div>
+          <i class="fa-solid fa-restroom fa-2x" style="color: var(--light-text); opacity: 0.5;"></i>
+        </div>
+        <div class="card stat-card" style="border-left: 4px solid var(--secondary-color);">
+          <div class="info">
+            <h3 id="stat-clean">0</h3>
+            <p>Clean Washrooms</p>
+          </div>
+          <i class="fa-solid fa-sparkles fa-2x" style="color: var(--light-text); opacity: 0.5;"></i>
+        </div>
+        <div class="card stat-card" style="border-left: 4px solid var(--danger-color);">
+          <div class="info">
+            <h3 id="stat-dirty">0</h3>
+            <p>Dirty / Maintenance</p>
+          </div>
+          <i class="fa-solid fa-biohazard fa-2x" style="color: var(--light-text); opacity: 0.5;"></i>
+        </div>
+      </div>
+
+      <!-- Main Dash Grid -->
+      <div class="grid-2">
+        <!-- Washroom Management -->
+        <div class="card" style="grid-column: span 2;">
+          <h3 style="margin-bottom: 20px;"><i class="fa-solid fa-list-check"></i> Washroom Management</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Location</th>
+                  <th>Status</th>
+                  <th>Last Cleaned</th>
+                  <th>Assigned Staff</th>
+                </tr>
+              </thead>
+              <tbody id="washroom-table-body">
+                <!-- Data populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Complaint Management -->
+        <div class="card" style="grid-column: span 2;">
+          <h3 style="margin-bottom: 20px;"><i class="fa-solid fa-triangle-exclamation"></i> Complaint Management</h3>
+          <div class="table-container" style="max-height: 250px; overflow-y: auto;">
+            <table>
+              <thead style="position: sticky; top: 0; z-index: 10;">
+                <tr>
+                  <th>Ticket ID</th>
+                  <th>Washroom ID</th>
+                  <th>Issue</th>
+                  <th>Time</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="complaint-table-body">
+                <!-- Data populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Staff Shift Overview (Read-Only) -->
+        <div class="card">
+          <h3 style="margin-bottom: 20px;"><i class="fa-solid fa-users"></i> Staff Shift Overview</h3>
+          <p style="color: var(--light-text); margin-bottom: 15px; font-size: 0.9rem;"><i class="fa-solid fa-info-circle"></i> Shifts are managed by Supervisors. This is a read-only view.</p>
+          <div class="table-container" style="max-height: 250px; overflow-y: auto;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Staff Member</th>
+                  <th>Assigned Location</th>
+                  <th>Washrooms Covered</th>
+                </tr>
+              </thead>
+              <tbody id="admin-shift-overview-body">
+                <!-- Populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Inbox / Messages -->
+        <div class="card" style="grid-column: span 2;">
+          <h3 style="margin-bottom: 20px;"><i class="fa-solid fa-inbox"></i> Inbox / Contact Messages</h3>
+          <div class="table-container" style="max-height: 350px; overflow-y: auto;">
+            <table>
+              <thead style="position: sticky; top: 0; z-index: 10;">
+                <tr>
+                  <th>Date</th>
+                  <th>Sender</th>
+                  <th>Email</th>
+                  <th>Subject</th>
+                  <th>Message</th>
+                </tr>
+              </thead>
+              <tbody id="inbox-table-body">
+                <!-- Data populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Activity Log -->
+        <div class="card" style="background-color: var(--white); border-color: var(--border-color);">
+          <h3 style="margin-bottom: 20px;"><i class="fa-solid fa-clock-rotate-left"></i> System Activity Log</h3>
+          <ul id="activity-log-list" style="list-style: none; padding: 0; max-height: 250px; overflow-y: auto;">
+            <!-- Populated by JS -->
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="js/app.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

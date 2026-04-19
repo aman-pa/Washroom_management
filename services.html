@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services | SanitizeQ</title>
+  <meta name="description" content="Explore all the services SanitizeQ offers — from real-time dashboards to role-based management panels for hospital washroom hygiene.">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <style>
+    /* Services Page Specific Styles */
+    .services-hero {
+      background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 40%, #10b981 100%);
+      padding: 80px 0 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .services-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 30px 30px;
+      animation: drift 20s linear infinite;
+    }
+
+    @keyframes drift {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(30px, 30px); }
+    }
+
+    .services-hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .services-hero p {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.85);
+      max-width: 620px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .service-card {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px -12px rgba(0,0,0,0.15);
+    }
+
+    .service-card .card-stripe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      border-radius: 12px 12px 0 0;
+    }
+
+    .service-card .card-icon {
+      transition: transform 0.3s ease;
+    }
+
+    .service-card:hover .card-icon {
+      transform: scale(1.1);
+    }
+
+    .service-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.15rem;
+    }
+
+    .service-card p {
+      font-size: 0.95rem;
+      color: var(--light-text);
+      line-height: 1.65;
+    }
+
+    .service-features {
+      list-style: none;
+      padding: 0;
+      margin: 14px 0 0 0;
+    }
+
+    .service-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--dark-text);
+      padding: 5px 0;
+      line-height: 1.5;
+    }
+
+    .service-features li i {
+      color: var(--secondary-color);
+      font-size: 0.7rem;
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+
+    .service-card .service-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 16px;
+      color: var(--primary-color);
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: gap 0.25s ease, color 0.25s ease;
+    }
+
+    .service-card:hover .service-link {
+      gap: 10px;
+      color: var(--primary-hover);
+    }
+
+    /* How it works */
+    .process-section {
+      background: linear-gradient(180deg, var(--bg-color) 0%, #e0f2fe 100%);
+    }
+
+    body.dark-theme .process-section {
+      background: linear-gradient(180deg, var(--bg-color) 0%, #0c1a2e 100%);
+    }
+
+    /* Dark mode overrides for service card icon backgrounds */
+    body.dark-theme .service-card .card-icon[style*="#fee2e2"] { background-color: rgba(239, 68, 68, 0.15) !important; }
+    body.dark-theme .service-card .card-icon[style*="#d1fae5"] { background-color: rgba(16, 185, 129, 0.15) !important; }
+    body.dark-theme .service-card .card-icon[style*="#e0e7ff"] { background-color: rgba(99, 102, 241, 0.15) !important; }
+    body.dark-theme .service-card .card-icon[style*="#fef3c7"] { background-color: rgba(245, 158, 11, 0.15) !important; }
+    body.dark-theme .service-card .card-icon[style*="#ffe4e6"] { background-color: rgba(244, 63, 94, 0.15) !important; }
+    body.dark-theme .service-card .card-icon[style*="#e2e8f0"] { background-color: rgba(100, 116, 139, 0.2) !important; }
+    body.dark-theme .service-card .card-icon[style*="#e0f2fe"],
+    body.dark-theme .service-card .card-icon:not([style*="background-color"]) { background-color: rgba(14, 165, 233, 0.15) !important; }
+
+    /* Dark mode service card text */
+    body.dark-theme .service-card p {
+      color: var(--light-text);
+    }
+
+    body.dark-theme .service-card h3 {
+      color: var(--dark-text);
+    }
+
+    body.dark-theme .service-features li {
+      color: #cbd5e1;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      position: relative;
+    }
+
+    .process-step {
+      text-align: center;
+      padding: 30px 20px;
+      position: relative;
+    }
+
+    .step-number {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+      color: #fff;
+      font-size: 1.3rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+      box-shadow: 0 6px 15px -4px rgba(14,165,233,0.4);
+    }
+
+    .process-step h4 {
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+      color: var(--dark-text);
+    }
+
+    .process-step p {
+      font-size: 0.9rem;
+      color: var(--light-text);
+      line-height: 1.55;
+    }
+
+    /* Connector line between steps */
+    .process-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 55px;
+      right: -12px;
+      width: 24px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+      border-radius: 2px;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      padding: 70px 0;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 14px;
+    }
+
+    .cta-section p {
+      color: #94a3b8;
+      font-size: 1.1rem;
+      max-width: 520px;
+      margin: 0 auto 30px;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 992px) {
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-step:nth-child(2)::after { display: none; }
+      .services-hero h1 { font-size: 2.4rem; }
+    }
+
+    @media (max-width: 768px) {
+      .process-grid { grid-template-columns: 1fr; }
+      .process-step::after { display: none !important; }
+      .services-hero h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <i class="fa-solid fa-pump-medical"></i> Sanitize<span>Q</span>
+      </a>
+      <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html" class="active">Services</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="report.html">Report Issue</a>
+        <a href="contact.html">Contact</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-primary">Login</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Services Hero Banner -->
+    <section class="services-hero">
+      <div class="container">
+        <h1>What We Offer</h1>
+        <p>Everything your hospital needs to manage washroom hygiene — from real-time monitoring to role-based management panels.</p>
+      </div>
+    </section>
+
+    <!-- Core Services Grid -->
+    <section class="section" style="background-color: var(--white);">
+      <div class="container">
+        <h2 class="section-title">Our Services</h2>
+        <p style="color: var(--light-text); max-width: 640px; margin: -30px auto 50px; text-align: center;">
+          Each module in SanitizeQ is built to solve a real operational challenge in hospital washroom management.
+        </p>
+        
+        <div class="grid-3" style="text-align: left;">
+
+          <!-- 1. Real-Time Washroom Monitoring -->
+          <div class="card service-card">
+            <div class="card-stripe" style="background: linear-gradient(90deg, var(--primary-color), #38bdf8);"></div>
+            <div class="card-icon" style="margin-top: 10px;"><i class="fa-solid fa-satellite-dish"></i></div>
+            <h3>Real-Time Washroom Monitoring</h3>
+            <p>Track every washroom across all hospital wings — live status updates for cleanliness, occupancy, and supply levels at a glance.</p>
+            <ul class="service-features">
+              <li><i class="fa-solid fa-check"></i> Live clean / dirty / supplies-low status badges</li>
+              <li><i class="fa-solid fa-check"></i> Occupancy tracking (Available / Occupied)</li>
+              <li><i class="fa-solid fa-check"></i> Location-based filtering by wing (North, East, South)</li>
+              <li><i class="fa-solid fa-check"></i> Summary stat cards — Total, Clean, Needs Attention</li>
+            </ul>
+          </div>
+
+          <!-- 2. Complaint & Issue Ticketing -->
+          <div class="card service-card">
+            <div class="card-stripe" style="background: linear-gradient(90deg, var(--danger-color), #f87171);"></div>
+            <div class="card-icon" style="color: var(--danger-color); background-color: #fee2e2; margin-top: 10px;"><i class="fa-solid fa-ticket"></i></div>
+            <h3>Complaint & Issue Ticketing</h3>
+            <p>A full lifecycle ticket system — anyone can report issues and the system routes them through admin dispatch to resolution.</p>
+            <ul class="service-features">
+              <li><i class="fa-solid fa-check"></i> Public report form with location & issue type selectors</li>
+              <li><i class="fa-solid fa-check"></i> Automatic ticket creation with unique IDs & timestamps</li>
+              <li><i class="fa-solid fa-check"></i> Admin complaint management table with resolve actions</li>
+              <li><i class="fa-solid fa-check"></i> Support for cleaning, plumbing, supplies & maintenance issues</li>
+            </ul>
+          </div>
+
+          <!-- 3. Staff Shift & Area Assignment -->
+          <div class="card service-card">
+            <div class="card-stripe" style="background: linear-gradient(90deg, var(--secondary-color), #34d399);"></div>
+            <div class="card-icon" style="color: var(--secondary-color); background-color: #d1fae5; margin-top: 10px;"><i class="fa-solid fa-people-arrows"></i></div>
+            <h3>Staff Shift & Area Assignment</h3>
+            <p>Admins assign cleaning personnel to specific hospital wings, ensuring full coverage and clear accountability.</p>
+            <ul class="service-features">
+              <li><i class="fa-solid fa-check"></i> Assign staff members to North, South, or East Wing</li>
+              <li><i class="fa-solid fa-check"></i> Staff view shows only their assigned washrooms</li>
+              <li><i class="fa-solid fa-check"></i> Team context switching (Janitor Team A/B, Maintenance Crew)</li>
+              <li><i class="fa-solid fa-check"></i> One-click "Mark as Cleaned" action for staff</li>
+            </ul>
+          </div>
+          
+          <!-- 4. Role-Based Dashboard System -->
+          <div class="card service-card">
+            <div class="card-stripe" style="background: linear-gradient(90deg, #6366f1, #818cf8);"></div>
+            <div class="card-icon" style="color: #6366f1; background-color: #e0e7ff; margin-top: 10px;"><i class="fa-solid fa-table-columns"></i></div>
+            <h3>Role-Based Dashboard System</h3>
+            <p>Three distinct dashboard experiences — Admin, Supervisor, and Staff — each tailored with relevant data and permissions.</p>
+            <ul class="service-features">
+              <li><i class="fa-solid fa-check"></i> Admin: Full washroom, complaint, staff & inbox management</li>
+              <li><i class="fa-solid fa-check"></i> Supervisor: Task monitoring & complaint reassignment</li>
+              <li><i class="fa-solid fa-check"></i> Staff: Assigned areas, complaints & quick report form</li>
+              <li><i class="fa-solid fa-check"></i> Secure login with role validation & session control</li>
+            </ul>
+          </div>
+
+          <!-- 5. Supervisor Operations & Reassignment -->
+          <div class="card service-card">
+            <div class="card-stripe" style="background: linear-gradient(90deg, var(--accent-color), #fbbf24);"></div>
+            <div class="card-icon" style="color: var(--accent-color); background-color: #fef3c7; margin-top: 10px;"><i class="fa-solid fa-clipboard-user"></i></div>
+            <h3>Supervisor Operations & Oversight</h3>
+            <p>Supervisors get a real-time view of cleaning progress and can reassign open complaints to the right team members.</p>
+            <ul class="service-features">
+              <li><i class="fa-solid fa-check"></i> Pending vs. completed cleaning stats at a glance</li>
+              <li><i class="fa-solid fa-check"></i> Staff task monitoring — status per assigned washroom</li>
+              <li><i class="fa-solid fa-check"></i> Complaint reassignment to any available responder</li>
+              <li><i class="fa-solid fa-check"></i> Active complaints counter for quick prioritization</li>
+            </ul>
+          </div>
+
+          <!-- 6. Daily Reset & Maintenance Scheduling -->
+          <div class="card service-card">
+            <div class="card-stripe" style="background: linear-gradient(90deg, #f43f5e, #fb7185);"></div>
+            <div class="card-icon" style="color: #f43f5e; background-color: #ffe4e6; margin-top: 10px;"><i class="fa-solid fa-rotate-left"></i></div>
+            <h3>Daily Reset & Scheduling</h3>
+            <p>Start each day fresh — admins can reset all washroom statuses and clear resolved tickets with a single action.</p>
+            <ul class="service-features">
+              <li><i class="fa-solid fa-check"></i> One-click "Reset to New Day" from the admin panel</li>
+              <li><i class="fa-solid fa-check"></i> Resets all washrooms to dirty / needs-cleaning state</li>
+              <li><i class="fa-solid fa-check"></i> Clears resolved complaint tickets from the queue</li>
+              <li><i class="fa-solid fa-check"></i> Ensures a consistent daily operational workflow</li>
+            </ul>
+          </div>
+
+          <!-- 7. System Activity Logging -->
+          <div class="card service-card">
+            <div class="card-stripe" style="background: linear-gradient(90deg, var(--dark-text), #475569);"></div>
+            <div class="card-icon" style="color: var(--dark-text); background-color: #e2e8f0; margin-top: 10px;"><i class="fa-solid fa-clock-rotate-left"></i></div>
+            <h3>Activity Logging & Audit Trail</h3>
+            <p>Every action — cleaning, ticket resolution, staff assignment — is logged with timestamps to maintain full operational transparency.</p>
+            <ul class="service-features">
+              <li><i class="fa-solid fa-check"></i> Admin system activity log (all operations)</li>
+              <li><i class="fa-solid fa-check"></i> Staff personal activity history (my actions)</li>
+              <li><i class="fa-solid fa-check"></i> Timestamped entries for accountability</li>
+              <li><i class="fa-solid fa-check"></i> Scrollable log panels in admin & staff dashboards</li>
+            </ul>
+          </div>
+
+          <!-- 8. Contact & Messaging Inbox -->
+          <div class="card service-card">
+            <div class="card-stripe" style="background: linear-gradient(90deg, #0ea5e9, #10b981);"></div>
+            <div class="card-icon" style="margin-top: 10px;"><i class="fa-solid fa-envelope-open-text"></i></div>
+            <h3>Contact & Messaging Inbox</h3>
+            <p>External users can submit inquiries through a contact form, and all messages are delivered directly to the admin's inbox panel.</p>
+            <ul class="service-features">
+              <li><i class="fa-solid fa-check"></i> Public contact form with name, email, subject & message</li>
+              <li><i class="fa-solid fa-check"></i> Messages appear in admin panel inbox table</li>
+              <li><i class="fa-solid fa-check"></i> MongoDB-backed persistent message storage</li>
+              <li><i class="fa-solid fa-check"></i> Supports integration requests, support & general inquiries</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section process-section">
+      <div class="container">
+        <h2 class="section-title">How It Works</h2>
+        <p style="color: var(--light-text); max-width: 580px; margin: -30px auto 50px; text-align: center;">
+          A simple, efficient workflow from issue detection to resolution.
+        </p>
+        <div class="process-grid">
+          <div class="process-step">
+            <div class="step-number">1</div>
+            <h4>Issue Detected</h4>
+            <p>A user, patient, or staff member spots a washroom issue and submits a report through the portal.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">2</div>
+            <h4>Admin Notified</h4>
+            <p>The complaint ticket appears in the Admin Panel along with the washroom ID, issue type, and timestamp.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">3</div>
+            <h4>Staff Assigned</h4>
+            <p>Admin or Supervisor assigns the relevant cleaning staff to handle the issue through their management panels.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">4</div>
+            <h4>Issue Resolved</h4>
+            <p>Staff marks the task complete. The dashboard updates in real time and the ticket is closed in the system.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>Ready to Get Started?</h2>
+        <p>Log in to your dashboard or report an issue right now — keeping hospital washrooms clean is a team effort.</p>
+        <div class="cta-actions">
+          <a href="login.html" class="btn btn-primary" style="padding: 14px 32px; font-size: 1.05rem;">
+            <i class="fa-solid fa-right-to-bracket" style="margin-right: 8px;"></i> Log In
+          </a>
+          <a href="dashboard.html" class="btn btn-outline" style="padding: 14px 32px; font-size: 1.05rem; border-color: rgba(255,255,255,0.3); color: #fff;">
+            <i class="fa-solid fa-chart-pie" style="margin-right: 8px;"></i> View Dashboard
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>Sanitize<span>Q</span></h3>
+          <p>The definitive solution for modern healthcare facilities to guarantee superior hygiene standards and operational efficiency.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Our Services</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Operations</h3>
+          <ul class="footer-links">
+            <li><a href="dashboard.html">Live Dashboard</a></li>
+            <li><a href="report.html">Report Issue</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <ul class="footer-links">
+            <li><i class="fa-solid fa-phone"></i> +91 9905784348</li>
+            <li><i class="fa-solid fa-envelope"></i> amanpandey10a3@gmail.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 SanitizeQ Hospital Management. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
+

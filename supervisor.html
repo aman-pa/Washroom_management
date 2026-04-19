@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supervisor Panel | SanitizeQ</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+  
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <i class="fa-solid fa-pump-medical"></i> Sanitize<span>Q</span> <span style="font-size: 1rem; color:var(--dark-text); font-weight: normal; margin-left: 10px;">| Supervisor</span>
+      </a>
+      <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+      <nav class="nav-links">
+        <a href="supervisor.html" class="active">Operations</a>
+        <a href="dashboard.html">Floor Map</a>
+      </nav>
+      <div class="nav-actions" style="display:flex; align-items:center;">
+        <span style="margin-right: 15px; font-weight: 500;"><i class="fa-solid fa-clipboard-user"></i> Operations Lead</span>
+        <a href="login.html" class="btn btn-outline" style="padding: 6px 15px;">Log Out</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      
+      <!-- Top Overview Cards -->
+      <div class="grid-3 mb-4" style="margin-bottom: 30px;">
+        <div class="card stat-card" style="border-left: 4px solid var(--warning-color); border-color: #f59e0b;">
+          <div class="info">
+            <h3 id="sup-stat-pending">0</h3>
+            <p>Pending Cleanings</p>
+          </div>
+          <i class="fa-solid fa-clock fa-2x" style="color: var(--light-text); opacity: 0.5;"></i>
+        </div>
+        <div class="card stat-card" style="border-left: 4px solid var(--secondary-color);">
+          <div class="info">
+            <h3 id="sup-stat-completed">0</h3>
+            <p>Cleaned Today</p>
+          </div>
+          <i class="fa-solid fa-check-double fa-2x" style="color: var(--light-text); opacity: 0.5;"></i>
+        </div>
+        <div class="card stat-card" style="border-left: 4px solid var(--danger-color);">
+          <div class="info">
+            <h3 id="sup-stat-complaints">0</h3>
+            <p>Active Complaints</p>
+          </div>
+          <i class="fa-solid fa-triangle-exclamation fa-2x" style="color: var(--light-text); opacity: 0.5;"></i>
+        </div>
+      </div>
+
+      <!-- Staff Shift Assignment (Supervisor Responsibility) -->
+      <div class="card" style="margin-bottom: 30px; max-width: 520px;">
+        <h3 style="margin-bottom: 20px;"><i class="fa-solid fa-calendar-check"></i> Staff Shift Assignment</h3>
+        <p style="color: var(--light-text); margin-bottom: 15px; font-size: 0.9rem;">Assign your team members to washroom locations / wings.</p>
+        <form id="sup-assign-form">
+          <div class="form-group">
+            <label>Select Staff Member</label>
+            <select class="form-control" id="sup-assign-staff-select" required>
+              <!-- Populated by JS -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Assign to Location / Block</label>
+            <select class="form-control" id="sup-assign-loc-select" required>
+              <option value="North Wing">North Wing</option>
+              <option value="South Wing">South Wing</option>
+              <option value="East Wing">East Wing</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-secondary"><i class="fa-solid fa-arrow-right-to-bracket"></i> Assign Staff</button>
+        </form>
+        <hr style="border-color: var(--border-color); margin: 20px 0;">
+        <h4 style="margin-bottom: 10px;"><i class="fa-solid fa-rotate-left"></i> Day Reset</h4>
+        <p style="color: var(--light-text); margin-bottom: 12px; font-size: 0.85rem;">Manually reset all washrooms to Dirty for a new shift cycle. This also happens automatically every 24 hours.</p>
+        <button class="btn btn-outline" style="border-color: var(--danger-color); color: var(--danger-color); padding: 6px 15px; font-size: 0.85rem;" id="sup-reset-day-btn"><i class="fa-solid fa-rotate-left"></i> Reset to New Day</button>
+      </div>
+
+      <div class="grid-2">
+        <!-- Staff Monitoring Table -->
+        <div class="card" style="grid-column: span 2;">
+          <h3 style="margin-bottom: 20px;"><i class="fa-solid fa-clipboard-list"></i> Staff Task Monitoring</h3>
+          <p style="color: var(--light-text); margin-bottom: 15px;">Live view of assigned cleaning tasks across wings.</p>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Assigned Staff</th>
+                  <th>Washroom Location</th>
+                  <th>Current Status</th>
+                  <th>Supervisor Action</th>
+                </tr>
+              </thead>
+              <tbody id="sup-task-body">
+                <!-- Populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Complaint assignment -->
+        <div class="card" style="grid-column: span 2;">
+          <h3 style="margin-bottom: 20px;"><i class="fa-solid fa-people-arrows"></i> Complaint Reassignment</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Ticket / Issue</th>
+                  <th>Washroom ID</th>
+                  <th>Current Status</th>
+                  <th>Assign Responder</th>
+                </tr>
+              </thead>
+              <tbody id="sup-comp-body">
+                <!-- Populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/app.js"></script>
+  <script src="js/supervisor.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

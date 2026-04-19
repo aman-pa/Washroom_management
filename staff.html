@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Panel | SanitizeQ</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+  
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <i class="fa-solid fa-pump-medical"></i> Sanitize<span>Q</span> <span style="font-size: 1rem; color:var(--dark-text); font-weight: normal; margin-left: 10px;">| Staff View</span>
+      </a>
+      <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+      <nav class="nav-links">
+        <a href="index.html">Main Site</a>
+        <a href="staff.html" class="active">My Tasks</a>
+      </nav>
+      <div class="nav-actions" style="display:flex; align-items:center;">
+        <!-- Simulated Context Switcher for Demo Purposes -->
+        <select id="staff-context" class="form-control" style="padding: 6px 12px; margin-right: 15px; width: auto; font-size: 0.9rem;">
+          <option value="Janitor Team A">Janitor Team A</option>
+          <option value="Janitor Team B">Janitor Team B</option>
+          <option value="Maintenance Crew">Maintenance Crew</option>
+        </select>
+        <a href="login.html" class="btn btn-outline" style="padding: 6px 15px;">Log Out</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      
+      <div class="grid-2">
+        <!-- Assigned Tasks Table -->
+        <div class="card" style="grid-column: span 2;">
+          <h3 style="margin-bottom: 20px;"><i class="fa-solid fa-clipboard-check"></i> My Assigned Areas</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Washroom ID</th>
+                  <th>Location</th>
+                  <th>Current Status</th>
+                  <th>Last Cleaned</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="staff-task-body">
+                <!-- Populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Assigned Complaints Table -->
+        <div class="card" style="grid-column: span 2;">
+          <h3 style="margin-bottom: 20px;"><i class="fa-solid fa-triangle-exclamation"></i> My Assigned Complaints</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Ticket ID</th>
+                  <th>Washroom ID</th>
+                  <th>Issue</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="staff-complaint-body">
+                <!-- Populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2 mt-4" style="margin-top: 40px;">
+        <!-- Report Issue Form -->
+        <div class="card">
+          <h3 style="margin-bottom: 20px;"><i class="fa-solid fa-triangle-exclamation"></i> Quick Report Issue</h3>
+          <p style="color:var(--light-text); margin-bottom: 15px;">Spot a supply shortage or maintenance issue? Report it instantly.</p>
+          <form id="staff-report-form">
+            <div class="form-group">
+              <label>Select Washroom</label>
+              <select class="form-control" id="report-washroom-id" required>
+                <!-- Populated by JS based on assignment -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Describe Issue</label>
+              <textarea class="form-control" id="report-issue-desc" style="min-height: 80px;" placeholder="e.g. Broken mirror, out of paper towels..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-outline" style="color: var(--danger-color); border-color: var(--danger-color);"><i class="fa-solid fa-paper-plane"></i> Submit Report</button>
+          </form>
+        </div>
+
+        <!-- Personal Activity -->
+        <div class="card" style="background-color: var(--white); border-color: var(--border-color);">
+          <h3 style="margin-bottom: 20px;"><i class="fa-solid fa-clock-rotate-left"></i> My Recent Activity</h3>
+          <ul id="staff-history-list" style="list-style: none; padding: 0; max-height: 250px; overflow-y: auto;">
+            <!-- Populated by JS -->
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/app.js"></script>
+  <script src="js/staff.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

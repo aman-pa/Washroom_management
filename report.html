@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report Issue | SanitizeQ</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body class="page-with-bg">
+
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <i class="fa-solid fa-pump-medical"></i> Sanitize<span>Q</span>
+      </a>
+      <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="report.html" class="active">Report Issue</a>
+        <a href="contact.html">Contact</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-primary">Login</a>
+
+      </div>
+    </div>
+  </header>
+
+  <main style="min-height: calc(100vh - 80px); padding: 60px 20px;">
+    <div class="container">
+      <div
+        style="max-width: 650px; margin: 0 auto; background: var(--white); border-radius: 16px; padding: 40px; box-shadow: var(--box-shadow-hover);">
+        <div class="text-center" style="margin-bottom: 30px;">
+          <h2 style="font-size: 2rem; color: var(--dark-text); margin-bottom: 10px;">Report an Issue</h2>
+          <p style="color: var(--light-text);">Help us keep the facilities clean. Submit any problems immediately to our
+            dispatch team.</p>
+        </div>
+
+        <form id="report-form">
+          <div class="form-group">
+            <label for="reporter-name">Your Name (Optional)</label>
+            <input type="text" id="reporter-name" class="form-control" placeholder="E.g. Dr. Smith / Visitor">
+          </div>
+
+          <div class="form-group">
+            <label for="washroom-id">Washroom Location / ID</label>
+            <select id="washroom-id" class="form-control" required>
+              <option value="">Select a location</option>
+              <option value="N-101">North Wing - Room 101 (Mens)</option>
+              <option value="N-102">North Wing - Room 102 (Womens)</option>
+              <option value="E-205">East Wing - Room 205 (Handicap)</option>
+              <option value="S-301">South Wing - Room 301 (Staff)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="issue-type">Type of Issue</label>
+            <select id="issue-type" class="form-control" required>
+              <option value="">Select the primary problem</option>
+              <option value="dirty">Needs General Cleaning</option>
+              <option value="soap">Out of Soap / Sanitizer</option>
+              <option value="paper">Out of Paper Towels / Toilet Paper</option>
+              <option value="plumbing">Plumbing Issue / Leaking</option>
+              <option value="other">Other / Maintenance</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Additional Details</label>
+            <textarea id="description" class="form-control"
+              placeholder="Please provide any extra details..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px; font-size: 1.1rem;">
+            <i class="fa-solid fa-paper-plane" style="margin-right: 8px;"></i> Submit Report
+          </button>
+        </form>
+
+        <div id="success-message" class="text-center d-none" style="padding: 40px 0;">
+          <div style="font-size: 4rem; color: var(--secondary-color); margin-bottom: 20px;">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+          <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Report Submitted</h3>
+          <p style="color: var(--light-text); margin-bottom: 20px;">Thank you! Our designated cleaning staff has been
+            notified and is on the way.</p>
+          <button onclick="location.reload()" class="btn btn-outline">Report Another Issue</button>
+        </div>
+      </div>
+
+      <!-- Informational Section to make page more scrollable -->
+      <div style="max-width: 650px; margin: 40px auto 0; text-align: center;">
+        <h3 style="font-size: 1.5rem; color: var(--dark-text); margin-bottom: 20px;">Why Your Reports Matter</h3>
+        <p style="color: var(--light-text); margin-bottom: 30px;">
+          Patient and staff safety is our top priority. By promptly reporting restroom issues, you help prevent the
+          spread of infections and maintain a hygienic environment for everyone.
+        </p>
+
+        <div class="grid-2" style="text-align: left; gap: 20px;">
+          <div class="card" style="padding: 20px;">
+            <i class="fa-solid fa-bolt" style="font-size: 2rem; color: var(--accent-color); margin-bottom: 15px;"></i>
+            <h4 style="margin-bottom: 10px; color: var(--dark-text);">Fast Response Time</h4>
+            <p style="font-size: 0.9rem; color: var(--light-text);">Our maintenance team is on standby and receives
+              instant notifications.</p>
+          </div>
+          <div class="card" style="padding: 20px;">
+            <i class="fa-solid fa-shield-halved"
+              style="font-size: 2rem; color: var(--secondary-color); margin-bottom: 15px;"></i>
+            <h4 style="margin-bottom: 10px; color: var(--dark-text);">100% Confidential</h4>
+            <p style="font-size: 0.9rem; color: var(--light-text);">Your identity isn't required and all submissions are
+              strictly private.</p>
+          </div>
+        </div>
+
+        <div
+          style="margin-top: 40px; padding: 20px; border-radius: 12px; background: rgba(14, 165, 233, 0.1); border: 1px solid rgba(14, 165, 233, 0.2);">
+          <p style="color: var(--primary-hover); font-weight: 500; font-size: 0.95rem;">
+            <i class="fa-solid fa-phone" style="margin-right: 8px;"></i> Emergency plumbing issues? Please call
+            Maintenance at <strong>9905784345</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/app.js"></script>
+  <script src="js/report.js"></script>
+  <script src="js/script.js"></script>
+</body>
+
+</html>

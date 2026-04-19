@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | SanitizeQ</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="bg-image-page">
+  
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <i class="fa-solid fa-pump-medical"></i> Sanitize<span>Q</span>
+      </a>
+      <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="dashboard.html" class="active">Dashboard</a>
+        <a href="report.html">Report Issue</a>
+        <a href="contact.html">Contact</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <span style="margin-right: 15px; font-weight: 500; color: var(--dark-text);"><i class="fa-regular fa-user-circle"></i> Guest View</span>
+        <a href="login.html" class="btn btn-primary">Login</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="glass-panel" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; padding: 20px; border-radius: 12px;">
+          <div>
+            <h2 class="section-title" style="margin-bottom: 10px; text-align: left;">Live Dashboard</h2>
+            <p style="color: var(--light-text);">Real-time overview of washroom statuses across all wings.</p>
+          </div>
+          <div style="display: flex; gap: 15px; align-items: stretch;">
+            <div style="background: var(--white); border: 1px solid var(--border-color); border-radius: 6px; padding: 0 20px; display: flex; align-items: center; gap: 10px; min-height: 100%; box-shadow: var(--box-shadow);">
+              <span style="color: var(--light-text); font-weight: 500; font-size: 0.95rem;">No. of Washrooms:</span>
+              <strong id="nav-washroom-count" style="color: var(--primary-color); font-size: 1.2rem; font-weight: 700;">24</strong>
+            </div>
+            <select id="location-filter" class="form-control" style="width: 250px; cursor: pointer; height: auto;">
+              <option>All Locations</option>
+              <option>North Wing (Cardiology)</option>
+              <option>East Wing (Maternity)</option>
+              <option>South Wing (ICU)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Summary Stats -->
+        <div class="grid-3 mb-4">
+          <div class="card stat-card">
+            <div class="info">
+              <h3 id="stat-total">24</h3>
+              <p>Total Washrooms</p>
+            </div>
+            <div class="icon" style="font-size: 2.5rem; color: var(--primary-color);">
+              <i class="fa-solid fa-restroom"></i>
+            </div>
+          </div>
+          <div class="card stat-card" style="border-left: 5px solid var(--secondary-color);">
+            <div class="info">
+              <h3 id="stat-clean">21</h3>
+              <p>Currently Clean</p>
+            </div>
+            <div class="icon" style="font-size: 2.5rem; color: var(--secondary-color);">
+              <i class="fa-solid fa-spray-can-sparkles"></i>
+            </div>
+          </div>
+          <div class="card stat-card" style="border-left: 5px solid var(--danger-color);">
+            <div class="info">
+              <h3 id="stat-attention">3</h3>
+              <p>Needs Attention</p>
+            </div>
+            <div class="icon" style="font-size: 2.5rem; color: var(--danger-color);">
+              <i class="fa-solid fa-broom"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Washrooms Grid -->
+        <div id="washroom-grid" class="washroom-grid">
+          <!-- Room 1 -->
+          <div class="card washroom-card">
+            <div class="washroom-header">
+              <h4>N-101 (Mens)</h4>
+              <span class="badge badge-success">Clean</span>
+            </div>
+            <div class="status-row">
+              <span style="color: var(--light-text);"><i class="fa-solid fa-door-open"></i> Occupancy</span>
+              <span style="font-weight: 600; color: var(--secondary-color);">Available</span>
+            </div>
+            <div class="status-row">
+              <span style="color: var(--light-text);"><i class="fa-regular fa-clock"></i> Last Cleaned</span>
+              <span style="font-weight: 500;">10 mins ago</span>
+            </div>
+          </div>
+
+          <!-- Room 2 -->
+          <div class="card washroom-card" style="border-color: var(--danger-color); box-shadow: 0 0 10px rgba(239,68,68,0.2);">
+            <div class="washroom-header">
+              <h4>N-102 (Womens)</h4>
+              <span class="badge badge-danger">Needs Cleaning</span>
+            </div>
+            <div class="status-row">
+              <span style="color: var(--light-text);"><i class="fa-solid fa-door-closed"></i> Occupancy</span>
+              <span style="font-weight: 600; color: var(--danger-color);">Occupied</span>
+            </div>
+            <div class="status-row">
+              <span style="color: var(--light-text);"><i class="fa-regular fa-clock"></i> Last Cleaned</span>
+              <span style="font-weight: 500;">2 hours ago</span>
+            </div>
+          </div>
+
+          <!-- Room 3 -->
+          <div class="card washroom-card">
+            <div class="washroom-header">
+              <h4>E-205 (Handicap)</h4>
+              <span class="badge badge-success">Clean</span>
+            </div>
+            <div class="status-row">
+              <span style="color: var(--light-text);"><i class="fa-solid fa-door-open"></i> Occupancy</span>
+              <span style="font-weight: 600; color: var(--secondary-color);">Available</span>
+            </div>
+            <div class="status-row">
+              <span style="color: var(--light-text);"><i class="fa-regular fa-clock"></i> Last Cleaned</span>
+              <span style="font-weight: 500;">45 mins ago</span>
+            </div>
+          </div>
+
+          <!-- Room 4 -->
+          <div class="card washroom-card" style="border-color: var(--accent-color);">
+            <div class="washroom-header">
+              <h4>S-301 (Staff Only)</h4>
+              <span class="badge badge-warning">Supplies Low</span>
+            </div>
+            <div class="status-row">
+              <span style="color: var(--light-text);"><i class="fa-solid fa-door-open"></i> Occupancy</span>
+              <span style="font-weight: 600; color: var(--secondary-color);">Available</span>
+            </div>
+            <div class="status-row">
+              <span style="color: var(--light-text);"><i class="fa-solid fa-pump-soap"></i> Soap Level</span>
+              <span style="font-weight: 600; color: var(--accent-color);">10%</span>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Keeping footer minimal for dashboard to feel more a webapp -->
+  <footer style="padding: 20px 0; background-color: var(--white); color: var(--light-text); border-top: 1px solid var(--border-color);">
+    <div class="container text-center">
+      <p>&copy; 2026 SanitizeQ Hospital Management. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | SanitizeQ</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+  
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <i class="fa-solid fa-pump-medical"></i> Sanitize<span>Q</span>
+      </a>
+      <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+      </nav>
+      <div class="nav-actions">
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-container" style="padding: 60px 20px;">
+    <div class="auth-card" style="margin-top: auto; margin-bottom: auto;">
+      <div class="auth-header">
+        <h2>Welcome Back</h2>
+        <p style="color: var(--light-text);">Log in to your admin or staff dashboard.</p>
+      </div>
+
+      <form id="login-form" novalidate>
+        <!-- Role Selection -->
+        <div class="form-group">
+          <label for="role">Select Role</label>
+          <div class="input-wrapper">
+            <select id="role" class="form-control" required aria-label="Select your role">
+              <option value="" disabled selected>Select your role</option>
+              <option value="admin">Admin</option>
+              <option value="supervisor">Supervisor</option>
+              <option value="staff">Cleaning Staff</option>
+            </select>
+            <i class="fa-solid fa-user-tag input-icon"></i>
+          </div>
+          <span class="error-text" id="role-error"></span>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email">Staff Email / Employee ID</label>
+          <div class="input-wrapper">
+            <input type="email" id="email" class="form-control" placeholder="admin@hospital.org" required aria-label="Email or Employee ID">
+            <i class="fa-regular fa-envelope input-icon"></i>
+          </div>
+          <span class="error-text" id="email-error"></span>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <div style="display: flex; justify-content: space-between;">
+            <label for="password">Password</label>
+            <a href="#" class="forgot-link">Forgot Password?</a>
+          </div>
+          <div class="input-wrapper">
+            <input type="password" id="password" class="form-control" placeholder="Enter your password" required aria-label="Password">
+            <i class="fa-solid fa-lock input-icon"></i>
+            <button type="button" class="toggle-password" id="toggle-password" aria-label="Toggle password visibility">
+              <i class="fa-regular fa-eye" id="toggle-icon"></i>
+            </button>
+          </div>
+          <span class="error-text" id="password-error"></span>
+        </div>
+
+        <!-- Remember Me -->
+        <div class="form-group checkbox-group">
+          <input type="checkbox" id="remember">
+          <label for="remember">Remember me for 30 days</label>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" id="login-btn" class="btn btn-primary btn-block" disabled>
+          <span id="btn-text">Log In securely</span>
+          <i class="fa-solid fa-spinner fa-spin d-none" id="login-spinner"></i>
+        </button>
+      </form>
+
+      <div class="text-center mt-4" style="border-top: 1px solid var(--border-color); padding-top: 20px; font-size: 0.9rem; color: var(--light-text);">
+        Need access? <a href="contact.html" style="color: var(--primary-color); font-weight: 500;">Contact your IT Admin.</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/script.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>
