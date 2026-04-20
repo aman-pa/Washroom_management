@@ -20,7 +20,7 @@ router.post('/', verifyToken, async (req, res) => {
   try {
     const { washroomId, issueType } = req.body;
     const newId = '#100' + (Math.floor(Math.random() * 90) + 10);
-    const timeStr = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    const timeStr = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', timeZone: 'Asia/Kolkata'});
     
     const complaint = new Complaint({
       idString: newId,
@@ -56,7 +56,7 @@ router.put('/:id', verifyToken, checkRole(['admin', 'supervisor', 'staff']), asy
     complaint.status = status;
     await complaint.save();
 
-    const timeStr = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    const timeStr = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', timeZone: 'Asia/Kolkata'});
     await new Activity({ time: timeStr, message: `Complaint ${complaint.idString} status updated to ${status} by ${req.userName}.` }).save();
 
     res.json({ message: 'Complaint updated', complaint });

@@ -19,7 +19,7 @@ router.put('/reset/all', verifyToken, checkRole(['admin', 'supervisor']), async 
   try {
     await Washroom.updateMany({}, { status: 'Dirty', lastCleanedTime: 'Never' });
     
-    const timeStr = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    const timeStr = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', timeZone: 'Asia/Kolkata'});
     await new Activity({ time: timeStr, message: `${req.userName} (${req.userRole}) reset all washrooms to Dirty for new day.` }).save();
     
     res.json({ message: 'All washrooms reset to dirty.' });
@@ -38,13 +38,13 @@ router.put('/:id', verifyToken, checkRole(['admin', 'supervisor']), async (req, 
     if (status) {
       washroom.status = status;
       if (status === 'Clean') {
-        washroom.lastCleanedTime = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        washroom.lastCleanedTime = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', timeZone: 'Asia/Kolkata'});
       }
     }
     
     if (assignedStaff) {
       washroom.assignedStaff = assignedStaff;
-      const timeStr = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+      const timeStr = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', timeZone: 'Asia/Kolkata'});
       await new Activity({ time: timeStr, message: `${req.userName} assigned ${assignedStaff} to ${washroom.location}.` }).save();
     }
 

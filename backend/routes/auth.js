@@ -42,7 +42,7 @@ router.post('/login', async (req, res) => {
     );
 
     // Log login activity
-    const timeStr = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    const timeStr = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', timeZone: 'Asia/Kolkata'});
     await new Activity({ time: timeStr, message: `${user.name} logged in.`, userId: user._id }).save();
 
     res.status(200).json({ token, user: { name: user.name, role: user.role, email: user.email }});

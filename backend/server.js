@@ -89,7 +89,7 @@ async function seedDatabase() {
       { idString: '#10041', washroomId: 'W-301', issueType: 'Out of Soap', reportedBy: 'Dr. Alan Grant', time: '09:15 AM', status: 'Assigned to Janitor Team A', createdAt: '09:15 AM' }
     ]);
 
-    const timeStr = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    const timeStr = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', timeZone: 'Asia/Kolkata'});
     await new Activity({ time: timeStr, message: 'System initialized and seeded.' }).save();
     console.log('Database seeded!');
   }
@@ -129,7 +129,7 @@ async function autoResetIfNewDay() {
     try {
       await Washroom.updateMany({}, { status: 'Dirty', lastCleanedTime: 'Never' });
       
-      const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Kolkata' });
       await new Activity({ time: timeStr, message: 'System auto-reset: All washrooms reset to Dirty for the new day.' }).save();
       
       saveLastResetDate(today);

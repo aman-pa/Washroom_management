@@ -22,10 +22,10 @@ router.put('/clean/:id', verifyToken, checkRole(['staff']), async (req, res) => 
     if (!washroom) return res.status(404).json({ error: 'Washroom not found' });
 
     washroom.status = 'Clean';
-    washroom.lastCleanedTime = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    washroom.lastCleanedTime = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', timeZone: 'Asia/Kolkata'});
     await washroom.save();
 
-    const timeStr = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    const timeStr = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', timeZone: 'Asia/Kolkata'});
     await new Activity({ time: timeStr, message: `${req.params.id} marked as Clean by ${req.userName}.` }).save();
 
     res.json({ message: 'Washroom marked clean', washroom });
