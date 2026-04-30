@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       e.preventDefault();
       
       const washroomId = document.getElementById('washroom-id').value;
+      const reporterName = document.getElementById('reporter-name').value.trim();
       const issueTypeElement = document.getElementById('issue-type');
       let issueDesc = issueTypeElement.options[issueTypeElement.selectedIndex].text;
       const additionalDetails = document.getElementById('description').value;
@@ -44,7 +45,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       try {
         if (typeof reportNewIssue === 'function') {
-          await reportNewIssue(washroomId, issueDesc);
+          await reportNewIssue(washroomId, issueDesc, reporterName);
           
           reportForm.style.display = 'none';
           successMessage.classList.remove('d-none');

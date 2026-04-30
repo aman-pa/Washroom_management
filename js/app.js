@@ -87,8 +87,8 @@ async function assignComplaint(compId, statusText) {
   return await apiCall(`/complaints/${encodeURIComponent(compId)}`, 'PUT', { status: statusText });
 }
 
-async function reportNewIssue(washroomId, issueDesc) {
-  return await apiCall('/complaints', 'POST', { washroomId, issueType: issueDesc });
+async function reportNewIssue(washroomId, issueDesc, reporterName) {
+  return await apiCall('/complaints', 'POST', { washroomId, issueType: issueDesc, reporterName });
 }
 
 async function markWashroomCleanStaff(idString) {

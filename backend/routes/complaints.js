@@ -18,15 +18,17 @@ router.get('/', verifyToken, async (req, res) => {
 // Create new complaint (Staff)
 router.post('/', verifyToken, async (req, res) => {
   try {
-    const { washroomId, issueType } = req.body;
+    const { washroomId, issueType, reporterName } = req.body;
     const newId = '#100' + (Math.floor(Math.random() * 90) + 10);
     const timeStr = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', timeZone: 'Asia/Kolkata'});
     
+    let finalReporter = (reporterName && reporterName.trim() !== '') ? reporterName.trim() : (req.userName ? req.userName : 'Visitor');
+
     const complaint = new Complaint({
       idString: newId,
       washroomId,
       issueType,
-      reportedBy: req.userName,
+      reportedBy: finalReporter,
       createdAt: timeStr
     });
     await complaint.save();
